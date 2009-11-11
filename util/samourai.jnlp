@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0+" 
+	codebase="http://kouyio.free.fr/samourai/files/game"
+	href="samourai.jnlp">
+	
+	<information>
+		<title>Samurai Online (v0.5)</title>
+		<vendor>Samurai Online Team</vendor>
+		<homepage href="http://kouyio.free.fr/samourai"/>
+		<description>MMORPG au Japon féodal</description>
+		<icon href="http://kouyio.free.fr/samourai/files/titre.png"/>
+    <icon kind="splash" href="http://kouyio.free.fr/samourai/files/splash.png" />
+		<offline-allowed/>
+	</information>
+	
+	<security>
+		<all-permissions/>
+	</security>
+	
+	<resources>
+		<j2se version="1.4+"/>
+		<jar href="client.jar"/>
+		<jar href="libs/lwjgl/lwjgl.jar"/>
+		<jar href="libs/lwjgl/lwjgl_util.jar"/>
+		<jar href="libs/jme/jme.jar"/>
+		<jar href="libs/jme/jme-awt.jar"/>
+		<jar href="libs/jme/jme-effects.jar"/>
+		<jar href="libs/jme/jme-model.jar"/>
+		<jar href="libs/jme/jme-sound.jar"/>
+		<jar href="libs/jme/jme-terrain.jar"/>
+		<jar href="samourai-data.jar"/>
+	</resources>
+	
+  <resources os="Windows">
+    <j2se version="1.4+"/> 
+    <nativelib href="libs/lwjgl/native/native_win32.jar"/>
+    <property name="org.lwjgl.util.Debug" value="true" />
+  </resources> 
+  <resources os="Linux" arch="i386">
+    <j2se version="1.4+"/> 
+    <nativelib href="libs/lwjgl/native/native_linux.jar"/>
+    <property name="org.lwjgl.util.Debug" value="true" />
+  </resources>   
+  <resources os="Mac OS X" arch="ppc">
+    <j2se version="1.4+"/> 
+    <nativelib href="libs/lwjgl/native/native_macosx.jar"/>
+    <property name="org.lwjgl.util.Debug" value="true" />
+  </resources>   
+	
+	<application-desc main-class="client.Client">
+	</application-desc>
+
+</jnlp>

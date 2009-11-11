@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="libs/mysql-connector-java-5.0.0-beta-bin.jar"/>
+	<classpathentry kind="lib" path="libs/jme/jme.jar"/>
+	<classpathentry kind="lib" path="libs/jme/jme-awt.jar"/>
+	<classpathentry kind="lib" path="libs/jme/jme-effects.jar"/>
+	<classpathentry kind="lib" path="libs/jme/jme-model.jar"/>
+	<classpathentry kind="lib" path="libs/jme/jme-terrain.jar"/>
+	<classpathentry kind="lib" path="libs/lwjgl/lwjgl_util.jar"/>
+	<classpathentry kind="lib" path="libs/lwjgl/lwjgl.jar"/>
+	<classpathentry kind="lib" path="libs/jep-2.3.1.jar"/>
+	<classpathentry kind="lib" path="build/release/samourai-data.jar"/>
+	<classpathentry kind="lib" path="libs/jme/jme-sound.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

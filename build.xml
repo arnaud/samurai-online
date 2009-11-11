@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<project name="SamuraiAntBuild" default="samourai-data">
+	<description>
+		Génération de l'application
+	</description>
+
+	<!-- Répertoires -->
+	<property name="vmaj" value="0"/>
+	<property name="vmin" value="6"/>
+	<property name="version" value="${vmaj}.${vmin}"/>
+	<property name="bin" location="bin"/>
+	<property name="src" location="src"/>
+	<property name="lib" location="libs"/>
+	<property name="build" location="build"/>
+	<property name="doc" location="${build}/doc"/>
+	<property name="release" location="${build}/release"/>
+	<property name="Crelease" location="${release}/client"/>
+	<property name="Srelease" location="${release}/serveur"/>
+	<property name="Wrelease" location="${release}/webstart"/>
+	<property name="keyStore" value="util/samuraiKeyStore"/>
+	<property name="storealias" value="samurai"/>
+	<property name="storepass" value="samurai-rocks"/>
+	
+	<!-- Librairies -->
+	<property name="lib-jme" value="libs/jme"/>
+	<property name="lib01" value="${lib-jme}/jme.jar"/>
+	<property name="lib02" value="${lib-jme}/jme-awt.jar"/>
+	<property name="lib03" value="${lib-jme}/jme-effects.jar"/>
+	<property name="lib04" value="${lib-jme}/jme-model.jar"/>
+	<property name="lib05" value="${lib-jme}/jme-sound.jar"/>
+	<property name="lib06" value="${lib-jme}/jme-terrain.jar"/>
+	<property name="lib-lwjgl" value="libs/lwjgl"/>
+	<property name="lib11" value="${lib-lwjgl}/jinput.jar"/>
+	<property name="lib12" value="${lib-lwjgl}/lwjgl.jar"/>
+	<property name="lib13" value="${lib-lwjgl}/lwjgl_devil.jar"/>
+	<property name="lib14" value="${lib-lwjgl}/lwjgl_fmod3.jar"/>
+	<property name="lib15" value="${lib-lwjgl}/lwjgl_util.jar"/>
+	<property name="lib16" value="${lib-lwjgl}/native/native_linux.jar"/>
+	<property name="lib17" value="${lib-lwjgl}/native/native_win32.jar"/>
+	<property name="lib18" value="${lib-lwjgl}/native/native_macosx.jar"/>
+	<property name="lib20" value="samourai-data.jar"/>
+	<property name="lib21" value="libs/mysql-connector-java-5.0.0-beta-bin.jar"/>
+	<property name="lib22" value="libs/jep-2.3.1.jar"/>
+	<property name="classpath" value="${lib01} ${lib02} ${lib03} ${lib04} ${lib05} ${lib06} ${lib11} ${lib12} ${lib13} ${lib14} ${lib15} ${lib16} ${lib17} ${lib18} ${lib20} ${lib21} ${lib22}"/>
+	<property name="Cclasspath" value="${lib01} ${lib02} ${lib03} ${lib04} ${lib05} ${lib06} ${lib12} ${lib15} ${lib20} ${lib22}"/>
+	<property name="Sclasspath" value="${lib01} ${lib02} ${lib03} ${lib04} ${lib05} ${lib06} ${lib20} ${lib21} ${lib22}"/>
+	
+	<!--<property name="junit_path" value="junit.jar"/>-->
+	
+	<!-- Génération de tout -->
+	<target name="all" depends="compile, release-all, doc" 
+		description="Génère tout">
+		<echo message="Génération accomplie."/>
+	</target>
+	
+	<!-- Compilation -->
+	<target name="compile" depends="" description="Compilation">
+		<javac srcdir="${src}" destdir="${bin}">
+			<classpath>
+				<pathelement path="${java.class.path}"/>
+				<!--<pathelement location="${junit_path}"/>-->
+			</classpath>
+		</javac>
+	</target>
+	
+	<!-- Génération de la Javadoc -->
+	<target name="doc" depends="" description="Génération de la documentation">
+		<copy todir="${doc}">
+			<fileset file="icone.png" dir="util"/>
+		</copy>
+		<javadoc destdir="${doc}" author="false" version="true" use="true" package="true" stylesheetfile="util/style.css">
+			<header><![CDATA[<img src="icone.png"/>]]></header>
+			<bottom><![CDATA[<i>Projet réalisé par des étudiants de l'ESEO</i> - 2006]]></bottom>
+			<fileset dir = "${src}">
+				<include name="**/*.java"/>
+				<exclude name="**/test/**"/>
+			</fileset>
+			<classpath path="${classpath}"/>
+		</javadoc>
+	</target>
+	
+	<target name="copie-libs-serveur" description ="Recopie les librairies utilisées par la release du serveur">
+		<echo>Copie des librairies utilisées par la release du serveur</echo>
+<!--		<copydir dest="${releaselibs}" src="${lib}">
+		</copydir>-->
+		<copy todir="${Srelease}/libs/jme">
+			<fileset file="*.jar" dir="${lib-jme}"/>
+		</copy>
+		<copy todir="${Srelease}/libs">
+			<fileset file="*.jar" dir="${lib}"/>
+		</copy>
+	</target>
+	
+	<target name="copie-libs-client" description ="Recopie les librairies utilisées par la release du client">
+		<echo>Copie des librairies utilisées par la release du client</echo>
+		<copy todir="${Crelease}/libs/jme">
+			<fileset file="*.jar" dir="${lib-jme}"/>
+		</copy>
+		<copy todir="${Crelease}/libs/lwjgl">
+			<fileset file="lwjgl.jar" dir="${lib-lwjgl}"/>
+			<fileset file="lwjgl_util.jar" dir="${lib-lwjgl}"/>
+		</copy>
+		<copy todir="${Crelease}/libs">
+			<fileset file="jep-2.3.1.jar" dir="${lib}"/>
+		</copy>
+		<copy todir="${Crelease}/libs/lwjgl/native">
+			<fileset file="**" dir="${lib-lwjgl}/native">
+				<exclude name="*.jar"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="copie-libs-webstart" description ="Recopie les librairies utilisées par la release webstart">
+		<echo>Copie des librairies utilisées par la release webstart</echo>
+		<copy todir="${Wrelease}/libs/jme">
+			<fileset file="*.jar" dir="${lib-jme}"/>
+		</copy>
+		<copy todir="${Wrelease}/libs/lwjgl">
+			<fileset file="lwjgl.jar" dir="${lib-lwjgl}"/>
+			<fileset file="lwjgl_util.jar" dir="${lib-lwjgl}"/>
+		</copy>
+		<copy todir="${Wrelease}/libs/lwjgl/native">
+			<fileset file="*.jar" dir="${lib-lwjgl}/native"/>
+		</copy>
+	</target>
+	
+	<!-- Génération de la release en fichiers JARs -->
+	<target name="release-all" depends="release-client, release-serveur, release-webstart" description="Génère l'ensemble des fichiers JARs de la release actuelle"/>
+	<target name="samourai-data" depends="" description="Génère le fichier Jar de la release actuelle du pack de données">
+		<echo>Génération du fichier de données v${version}</echo>
+		<jar jarfile="${release}/samourai-data.jar" basedir="." update="no" compress="true" includes="**/data/**" />
+		<signjar jar="${release}/samourai-data.jar" alias="${storealias}" keystore="${keyStore}" storepass="${storepass}" />
+	</target>
+	<target name="release-client" depends="copie-libs-client" description="Génère le fichier Jar de la release actuelle de l'interface client">
+		<echo>Génération de la release v${version} du client</echo>
+		<jar jarfile="${Crelease}/client.jar" basedir="${bin}" update="no" compress="true" includes="client/**/*.class, communication/**/*.class, interf/**/*.class, modele/**/*.class, serveur/**/*.class, util/**/*.class">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Version" value="${version}" />
+				<attribute name="Date" value="${TODAY}" />
+				<attribute name="Class-Path" value="${Cclasspath}" />
+				<attribute name="Main-Class" value="client.Client"/>
+				<section name="common">
+					<attribute name="Specification-Title" value="Samurai Online"/>
+					<attribute name="Specification-Version" value="${version}"/>
+					<attribute name="Specification-Vendor" value="Samurai Team"/>
+				</section>
+			</manifest>
+		</jar>
+		<signjar jar="${Crelease}/client.jar" alias="${storealias}" keystore="${keyStore}" storepass="${storepass}" />
+		<copy todir="${Crelease}">
+			<fileset file="samourai-data.jar" dir="${release}"/>
+			<fileset file="launch_client.bat" dir="util"/>
+			<fileset file="launch_client.sh" dir="util"/>
+		</copy>
+		<chmod file="${Crelease}/launch_client.sh" perm="+x"/>
+	</target>
+	<target name="release-webstart" depends="copie-libs-webstart" description="Génère le fichier Jar de la release webstart actuelle">
+		<echo>Génération de la release webstart v${version}</echo>
+		<jar jarfile="${Wrelease}/client.jar" basedir="${bin}" update="no" compress="true" includes="client/**/*.class, communication/**/*.class, interf/**/*.class, modele/**/*.class, serveur/**/*.class, util/**/*.class"/>
+		<signjar jar="${Wrelease}/client.jar" alias="${storealias}" keystore="${keyStore}" storepass="${storepass}" />
+		<copy todir="${Wrelease}">
+			<fileset file="samourai-data.jar" dir="${release}"/>
+			<fileset file="samourai.jnlp" dir="util"/>
+		</copy>
+	</target>
+	<target name="release-serveur" depends="copie-libs-serveur" description="Génère le fichier Jar de la release actuelle du serveur">
+		<echo>Génération de la release v${version} du serveur</echo>
+		<jar jarfile="${Srelease}/serveur.jar" basedir="${bin}" update="no" compress="true" includes="**/serveur/**/*.class, **/communication/**/*.class, **/interf/**/*.class, **/modele/**/*.class, util/**/*.class">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Version" value="${version}" />
+				<attribute name="Date" value="${TODAY}" />
+				<attribute name="Class-Path" value="${Sclasspath}" />
+				<attribute name="Main-Class" value="serveur.Serveur" />
+				<section name="common">
+					<attribute name="Specification-Title" value="Samurai Online"/>
+					<attribute name="Specification-Version" value="${version}"/>
+					<attribute name="Specification-Vendor" value="Samurai Team"/>
+				</section>
+			</manifest>
+		</jar>
+		<signjar jar="${Srelease}/serveur.jar" alias="${storealias}" keystore="${keyStore}" storepass="${storepass}" />
+		<copy todir="${Srelease}">
+			<fileset file="samourai-data.jar" dir="${release}"/>
+			<fileset file="launch_server_base_distante.bat" dir="util"/>
+			<fileset file="launch_server_base_eseo.bat" dir="util"/>
+			<fileset file="launch_server.sh" dir="util"/>
+		</copy>
+		<chmod file="${Srelease}/launch_server.sh" perm="+x"/>
+	</target>
+	
+</project>
