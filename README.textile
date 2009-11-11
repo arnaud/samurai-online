@@ -2,8 +2,19 @@ h1. Samurai Online
 
 h2. Description
 
-Samurai Online 
+Samurai Online
 
 !http://cloud.github.com/downloads/arnaud/samurai-online/samuraionline.png!
 
 Please note that some of the sources and documentation files are french-localized only.
+
+h2. Installation
+
+Since this game is client/server, you'll want to grab these:
+ * "Download _Samurai Online v0.6 - client_":http://cloud.github.com/downloads/arnaud/samurai-online/client_v0.6.zip
+ * "Download _Samurai Online v0.6 - server_":http://cloud.github.com/downloads/arnaud/samurai-online/serveur_v0.6.zip
+ * "Download _Initial database configuration_":http://cloud.github.com/downloads/arnaud/samurai-online/samurai.sql
+
+h2. User
+
+TODO
