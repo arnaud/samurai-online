@@ -1,0 +1,9 @@
+h1. Samurai Online
+
+h2. Description
+
+Samurai Online 
+
+!http://cloud.github.com/downloads/arnaud/samurai-online/samuraionline.png!
+
+Please note that some of the sources and documentation files are french-localized only.
