@@ -2,9 +2,12 @@ h1. Samurai Online
 
 h2. Description
 
-Samurai Online
+Samurai Online is an online multiplayer role playing game.
+Its status is _really_ *in beta*.
 
-!http://cloud.github.com/downloads/arnaud/samurai-online/samuraionline.png!
+h2. Screenshots
+
+!http://cloud.github.com/downloads/arnaud/samurai-online/screenshot-1.jpg! !http://cloud.github.com/downloads/arnaud/samurai-online/screenshot-2.jpg!
 
 Please note that some of the sources and documentation files are french-localized only.
 
@@ -15,6 +18,8 @@ Since this game is client/server, you'll want to grab these:
  * "Download _Samurai Online v0.6 - server_":http://cloud.github.com/downloads/arnaud/samurai-online/serveur_v0.6.zip
  * "Download _Initial database configuration_":http://cloud.github.com/downloads/arnaud/samurai-online/samurai.sql
 
-h2. User
+*TODO*
 
-TODO
+h2. Use
+
+*TODO*
