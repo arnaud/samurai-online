@@ -1,5 +1,5 @@
 /*
- * Created on 16 avr. 2006
+ * Created on 16 avr. 2019
  *
  * TODO To change the template for this generated file go to
  * Window - Preferences - Java - Code Style - Code Templates
@@ -72,7 +72,7 @@ System.out.println("From :"+address);
 ByteArrayOutputStream fluxSortie = new ByteArrayOutputStream() ;
 //on cree un ByteArrayOuputSream 
 ObjectOutput s = new ObjectOutputStream(fluxSortie);
-//on associe à ce ByteArrayOutputStream un flux de l'objet
+//on associe Ã  ce ByteArrayOutputStream un flux de l'objet
 UneDate [] dd = {new UneDate(25, 12, 98), new UneDate(15, 9, 57)};
 //on cree un tableau des elements ke l'on veut envoyer
 s.writeObject(dd);
@@ -92,6 +92,7 @@ System.out.println("Message Envoye : " + data.toString());
 }catch(IOException ex){
 System.out.println("Could not Send"+ex.getMessage());
 System.exit(0);
+	
 }
 } // for loop
 } // main
